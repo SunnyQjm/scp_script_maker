@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function mscp(){
+    HOST="xxx.xxx.xxx.xxx"
+    DEST=""
+    SOURCE=""
+    NAME=""
+    R_OPTION=false
+
+    while getopts "h:s:d:n:r" arg
+        do
+            case $arg in
+                h)
+                    HOST=$OPTARG
+                    ;;
+                s)
+                    SOURCE=$OPTARG
+                    ;;
+                d)
+                    DEST=$OPTARG
+                    ;;
+                n)
+                    NAME=$OPTARG
+                    ;;
+                r)
+                    R_OPTION=true
+                    ;;
+                ?)
+                    echo "unkow argument"
+                    exit 1
+                    ;;
+            esac
+        done
+
+
+    if [ $R_OPTION = true ]; then
+        scp -r $SOURCE ${NAME}@${HOST}:${DEST}
+    else
+        scp $SOURCE ${NAME}@${HOST}:${DEST}
+    fi
+}
