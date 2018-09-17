@@ -14,7 +14,7 @@ cd scp_script_maker
 ```
 ![安装器运行界面](https://raw.githubusercontent.com/SunnyQjm/scp_script_maker/master/pic1.png)
 
-**按上图所示分别输入对端IP（host），登陆用户名（username），生成的脚本的名字（script name）*
+**按上图所示分别输入对端IP（host），登陆用户名（username），生成的脚本的名字（script name）**
 
 > ## Example
 
