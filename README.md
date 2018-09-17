@@ -27,15 +27,27 @@ script name: test_script
 
 则安装器执行完毕之后，当前用户就得到一个新的命令 `test_script`，用法如下：
 ``` bash
-test_script [src] [dest]
+test_script [-r] <src> <dest>
 ```
 
 举个栗子：
-``` bash
-test_script ./test.c "~"
-```
 
-等效与执行下面的 `scp` 命令
-``` bash
-scp ./test.c ubuntu@123.234.345.456:~
-```
+- 复制文件
+  ``` bash
+  test_script ./test.c "~"
+  ```
+
+  等效与执行下面的 `scp` 命令
+  ``` bash
+  scp ./test.c ubuntu@123.234.345.456:~
+  ```
+
+- 如果是复制文件夹，则在调用时使用 `-r` 选项
+  ```bash
+  test_script -r ./test_dir "~"
+  ```
+  
+  等效与执行下面的 `scp` 命令
+  ``` bash
+  scp -r ./test_dir ubuntu@123.234.345.456:~
+  ```
