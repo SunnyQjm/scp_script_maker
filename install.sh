@@ -15,6 +15,21 @@ touch ${target_dir}${fileName}
 cat ./mscp > ${target_dir}${fileName}
 
 # 再输出函数调用
-echo "mscp -h ${host} -s \$1 -d \$2 -n ${username}" >> ${target_dir}${fileName}
+
+cat << EOF >> ${target_dir}${fileName}
+if [ \$# = 3 ]; then
+    if [ \$1 = "-r" ]; then
+        mscp -h ${host} -s \$2 -d \$3 -n ${username} -r
+    elif [ \$2 = "-r" ]; then
+        mscp -h ${host} -s \$1 -d \$3 -n ${username} -r
+    else
+        mscp -h ${host} -s \$1 -d \$2 -n ${username} -r
+    fi
+elif [ \$# = 2 ]; then
+    mscp -h ${host} -s \$1 -d \$2 -n ${username} 
+else
+    echo "wrong arguments"
+fi
+EOF
 
 chmod +x ${target_dir}${fileName}
